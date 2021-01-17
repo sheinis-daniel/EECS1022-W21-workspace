@@ -1,7 +1,6 @@
 //Beseyata DeShmaya
 package model;
 
-import jdk.internal.joptsimple.internal.Strings;
 
 public class Utilities {
 	
@@ -88,7 +87,7 @@ public class Utilities {
 		 *    Instead, refer to the input parameters of this method.   
 		 */
 		int minutes = seconds/60;
-		seconds = seconds%=60;
+		seconds%=60;
 		
 		int hours = minutes/60;
 		minutes%=60;
