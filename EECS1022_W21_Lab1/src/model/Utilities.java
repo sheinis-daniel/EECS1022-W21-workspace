@@ -1,4 +1,7 @@
+//Beseyata DeShmaya
 package model;
+
+import jdk.internal.joptsimple.internal.Strings;
 
 public class Utilities {
 	
@@ -23,6 +26,14 @@ public class Utilities {
 		 * 2. No Scanner operations should appear here (e.g., input.nextInt()).
 		 *    Instead, refer to the input parameters of this method.   
 		 */
+		int total = 0;
+		for(int i = 0;i<5;i++) {
+			result+="["+ft+"]";
+			total+=ft;
+			ft*=ratio;
+		}
+		result+= " has average "+String.format(total/5.0+"", "%:.1f");
+		
 		
 		
 		/* Your implementation ends here. */
@@ -47,6 +58,9 @@ public class Utilities {
 		 * 2. No Scanner operations should appear here (e.g., input.nextInt()).
 		 *    Instead, refer to the input parameters of this method.   
 		 */
+		double weightInKilograms = weight*0.4536;
+		double heightInMeteres = height*0.0254;
+		result = weightInKilograms/(heightInMeteres*heightInMeteres);
 		
 		
 		
@@ -73,6 +87,17 @@ public class Utilities {
 		 * 2. No Scanner operations should appear here (e.g., input.nextInt()).
 		 *    Instead, refer to the input parameters of this method.   
 		 */
+		int minutes = seconds/60;
+		seconds = seconds%=60;
+		
+		int hours = minutes/60;
+		minutes%=60;
+		
+		int days = hours/24;
+		hours%=24;
+		
+		result = days + " days " + hours +" hours " + minutes +" minutes "+seconds + " seconds";
+		
 		
 		
 		
