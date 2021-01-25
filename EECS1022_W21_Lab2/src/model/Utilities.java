@@ -1,3 +1,4 @@
+//Beseyata Deshmaya
 package model;
 
 public class Utilities {
@@ -24,8 +25,34 @@ public class Utilities {
 		 * 2. No Scanner operations should appear here (e.g., input.nextInt()).
 		 *    Instead, refer to the input parameters of this method.   
 		 */
+		double tax = 0;
+		double firstCutOff = (status==1) ? 8350 : 16700;
+		double secondCutOff = (status == 1) ? 33950 : 67900;
+		String case1 = (status == 1) ? "835.00" : "1670.00";
+		String case2 = (status == 1) ? "3840.00" : "7680.00";
 		
-		
+		String statusString = (status == 1) ? "Single" : "Married";
+		if(status !=1&&status!=2) {
+			result = "Illegal Status: "+status;
+		}else if(income < firstCutOff) {
+			tax=income*0.1;
+			String taxString = String.format("%.2f", tax);
+			result = statusString + " Filing: $"+taxString+" (Part I: $"+taxString+")";
+		} else if(income<secondCutOff) {
+			double finalTax = (income-firstCutOff)*0.15;
+			tax = Double.parseDouble(case1)+finalTax;
+			String taxString = String.format("%.2f", tax);
+			String finalTaxString = String.format("%.2f", finalTax);
+			result = statusString + " Filing: $"+taxString+" (Part I: $"+case1+", Part II: $"+finalTaxString+")";
+			
+		} else {
+			double finalTax = (income-secondCutOff)*0.25;
+			tax = Double.parseDouble(case1)+Double.parseDouble(case2)+finalTax;
+			String taxString = String.format("%.2f", tax);
+			String finalTaxString = String.format("%.2f", finalTax);
+			result = statusString + " Filing: $"+taxString+" (Part I: $"+case1+", Part II: $"+case2+", Part III: $"+finalTaxString+")";
+			
+		}
 
 		/* Your implementation ends here. */
 
@@ -63,7 +90,73 @@ public class Utilities {
 		 * 2. No Scanner operations should appear here (e.g., input.nextInt()).
 		 *    Instead, refer to the input parameters of this method.   
 		 */
+		int player1Wins = 0;
+		int player2Wins = 0;
+		String firstRoundWinnerText ="";
+		String secondRoundWinnerText ="";
+		String firstOutputChar1 = "";
+		String secondOutputChar1 = "";
+		String firstOutputChar2 = "";
+		String secondOutputChar2 = "";
 		
+		if(p1r1 =='S' && p2r1 == 'P') {
+			player1Wins++;
+			firstRoundWinnerText = p1 +" wins";
+			firstOutputChar1 = p1r1+"";
+			secondOutputChar1 = p2r1+"";
+			
+		} else if (p1r1 == 'P' && p2r1 == 'S') {
+			player2Wins++;
+			firstRoundWinnerText = p2 +" wins";
+			firstOutputChar1 = p2r1+"";
+			secondOutputChar1 = p1r1+"";
+		} else if(p1r1 == p2r1) {
+			firstRoundWinnerText="Tie";
+			firstOutputChar1 = p1r1+"";
+			secondOutputChar1 = p2r1+"";
+		} else if (p1r1<p2r1) {
+			player1Wins++;
+			firstRoundWinnerText = p1 +" wins";
+			firstOutputChar1 = p1r1+"";
+			secondOutputChar1 = p2r1+"";
+		} else {
+			player2Wins++;
+			firstRoundWinnerText = p2 +" wins";
+			firstOutputChar1 = p2r1+"";
+			secondOutputChar1 = p1r1+"";
+		}
+		
+		if(p1r2 =='S' && p2r2 == 'P') {
+			firstOutputChar2 = p1r2+"";
+			secondOutputChar2 = p2r2+"";
+			player1Wins++;
+			secondRoundWinnerText = p1 +" wins";
+		} else if (p1r2 == 'P' && p2r2 == 'S') {
+			firstOutputChar2 = p2r2+"";
+			secondOutputChar2 = p1r2+"";
+			player2Wins++;
+			secondRoundWinnerText = p2 +" wins";
+		} else if(p1r2 == p2r2) {
+			firstOutputChar2 = p1r2+"";
+			secondOutputChar2 = p2r2+"";
+			secondRoundWinnerText="Tie";
+		} else if (p1r2<p2r2) {
+			firstOutputChar2 = p1r2+"";
+			secondOutputChar2 = p2r2+"";
+			player1Wins++;
+			secondRoundWinnerText = p1 +" wins";
+		} else {
+			firstOutputChar2 = p2r2+"";
+			secondOutputChar2 = p1r2+"";
+			player2Wins++;
+			secondRoundWinnerText = p2 +" wins";
+		}
+		
+		String winner = (player1Wins==player2Wins) ? "Tie" : (player1Wins>player2Wins) ? p1+" wins" : p2+" wins";
+		
+		result = "Game over: "+winner+"! [Round 1: ";
+		result += firstRoundWinnerText + " ("+firstOutputChar1+" vs. "+secondOutputChar1+") ; ";
+		result += "Round 2: "+secondRoundWinnerText+" ("+firstOutputChar2+" vs. "+secondOutputChar2+")]";
 		
 		/* Your implementation ends here. */
 
