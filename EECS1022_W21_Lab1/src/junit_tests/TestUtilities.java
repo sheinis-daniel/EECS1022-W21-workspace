@@ -35,6 +35,12 @@ public class TestUtilities {
 		assertEquals("[7][21][63][189][567] has average 169.4", result);
 	}
 	
+	@Test
+	public void testGetGeometricSequence_05() {
+		String result = Utilities.getGeometricSequence(0, 3);
+		assertEquals("[0][0][0][0][0] has average 0.0", result);
+	}
+	
 	/*
 	 * Tests related to Utilities.getBMI
 	 */
